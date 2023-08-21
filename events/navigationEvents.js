@@ -1,4 +1,6 @@
 import { signOut } from '../utils/auth';
+import { getBooks } from '../api/bookData';
+import { getAuthors } from '../api/authorData';
 
 // navigation events
 const navigationEvents = () => {
@@ -14,6 +16,7 @@ const navigationEvents = () => {
   // TODO: ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
     console.warn('CLICKED ALL BOOKS');
+    getBooks().then(console.warn);
   });
 
   // FIXME: STUDENTS Create an event listener for the Authors
@@ -22,6 +25,7 @@ const navigationEvents = () => {
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
     console.warn('CLICKED AUTHORS');
+    getAuthors().then(console.warn);
   });
 
   // STRETCH: SEARCH
