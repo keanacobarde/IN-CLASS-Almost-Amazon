@@ -7,7 +7,7 @@ const endpoint = client.databaseURL;
 const getBooks = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json`, {
     method: 'GET',
-    header: {
+    headers: {
       'Content-Type': 'application/json',
     }
   })
@@ -18,10 +18,10 @@ const getBooks = () => new Promise((resolve, reject) => {
 // TODO: DELETE BOOK
 const deleteBook = (fireBaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${fireBaseKey}.json`, {
-    Method: 'DELETE',
-    header: {
+    method: 'DELETE',
+    headers: {
       'Content-Type': 'application/json',
-    }
+    },
   })
     .then((response) => response.json())
     .then((data) => resolve(data))

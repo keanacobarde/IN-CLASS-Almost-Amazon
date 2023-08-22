@@ -8,7 +8,10 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, fbk] = e.target.id.split('--');
-        deleteBook(fbk).then(getBooks).then(showBooks);
+        console.warn(fbk);
+        deleteBook(fbk).then(() => {
+          getBooks().then(showBooks);
+        });
       }
     }
 
