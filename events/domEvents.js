@@ -1,5 +1,6 @@
 import { deleteBook, getBooks } from '../api/bookData';
 import { showBooks } from '../pages/books';
+import addBookForm from '../components/forms/addBookForm';
 import { deleteSingleAuthor, getAuthors } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
 
@@ -20,6 +21,7 @@ const domEvents = () => {
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
       console.warn('ADD BOOK');
+      addBookForm();
     }
 
     // TODO: CLICK EVENT EDITING/UPDATING A BOOK
