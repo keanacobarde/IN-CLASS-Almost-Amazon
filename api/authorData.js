@@ -18,7 +18,31 @@ const getAuthors = () => new Promise((resolve, reject) => {
 const createAuthor = () => {};
 
 // FIXME: GET SINGLE AUTHOR
-const getSingleAuthor = () => {};
+const getSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${fireBaseKey}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+// Get Favorite Authors
+
+const getFavoriteAuthors = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 
 // FIXME: DELETE AUTHOR
 const deleteSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
@@ -43,6 +67,7 @@ export {
   getAuthors,
   createAuthor,
   getSingleAuthor,
+  getFavoriteAuthors,
   deleteSingleAuthor,
   updateAuthor,
   getAuthorBooks,

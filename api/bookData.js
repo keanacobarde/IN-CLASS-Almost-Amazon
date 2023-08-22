@@ -29,7 +29,17 @@ const deleteBook = (fireBaseKey) => new Promise((resolve, reject) => {
 });
 
 // TODO: GET SINGLE BOOK
-const getSingleBook = () => {};
+const getSingleBook = (fireBaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/${fireBaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 
 // TODO: CREATE BOOK
 const createBook = () => {};
