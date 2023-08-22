@@ -1,7 +1,7 @@
 import client from '../utils/client';
 
 const endpoint = client.databaseURL;
-// FIXME:  GET ALL AUTHORS
+
 const getAuthors = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors.json`, {
     method: 'GET',
@@ -21,7 +21,17 @@ const createAuthor = () => {};
 const getSingleAuthor = () => {};
 
 // FIXME: DELETE AUTHOR
-const deleteSingleAuthor = () => {};
+const deleteSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${fireBaseKey}.json`, {
+    method: 'DELETE',
+    header: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
 
 // FIXME: UPDATE AUTHOR
 const updateAuthor = () => {};

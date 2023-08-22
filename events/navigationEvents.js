@@ -36,7 +36,7 @@ const navigationEvents = () => {
       // MAKE A CALL TO THE API TO FILTER ON THE BOOKS
       // IF THE SEARCH DOESN'T RETURN ANYTHING, SHOW THE EMPTY STORE
       // OTHERWISE SHOW THE STORE
-
+      getBooks().then((response) => showBooks(response.filter((book) => book.title.toLowerCase() === searchValue)));
       document.querySelector('#search').value = '';
     }
   });
