@@ -16,7 +16,17 @@ const getBooks = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 // TODO: DELETE BOOK
-const deleteBook = () => {};
+const deleteBook = (fireBaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/${fireBaseKey}.json`, {
+    Method: 'DELETE',
+    header: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
 
 // TODO: GET SINGLE BOOK
 const getSingleBook = () => {};
