@@ -4,6 +4,7 @@ import addBookForm from '../components/forms/addBookForm';
 // import viewBook from '../pages/viewBook';
 import { deleteSingleAuthor, getAuthors } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
+import addAuthorForm from '../components/forms/addAuthorForm';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -24,7 +25,6 @@ const domEvents = () => {
       addBookForm();
     }
 
-    // TODO: CLICK EVENT EDITING/UPDATING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
       const [, fbk] = e.target.id.split('--');
       getSingleBook(fbk).then((bookObj) => addBookForm(bookObj));
@@ -42,9 +42,8 @@ const domEvents = () => {
       }
     }
 
-    // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
-      console.warn('ADD AUTHOR');
+      addAuthorForm();
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
   });

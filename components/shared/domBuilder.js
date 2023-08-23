@@ -8,7 +8,7 @@ const domBuilder = () => {
     <div id="form-container"></div>
     <div id="store"></div>
     <div id="view"></div>
-  </div><script src="https://kit.fontawesome.com/a4dd17ff4f.js" crossorigin="anonymous"></script>`;
+  </div>;
 
   renderToDOM('#app', domString);
 };
