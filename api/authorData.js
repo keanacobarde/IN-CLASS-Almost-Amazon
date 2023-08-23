@@ -37,7 +37,7 @@ const getSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
     }
   })
     .then((response) => response.json())
-    .then(resolve)
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
