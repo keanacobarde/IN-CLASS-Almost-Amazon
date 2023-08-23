@@ -30,14 +30,14 @@ const createAuthor = (payload) => new Promise((resolve, reject) => {
 
 // FIXME: GET SINGLE AUTHOR
 const getSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors/${fireBaseKey}`, {
+  fetch(`${endpoint}/authors/${fireBaseKey}.json`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then(resolve)
     .catch(reject);
 });
 
