@@ -11,9 +11,9 @@ const getBookDetails = async (firebaseKey) => {
 
 // getting details for authors
 const getAuthorDetails = async (firebaseKey) => {
-  const authorObj = await getSingleAuthor(firebaseKey);
-  const bookObj = await getBooks();
-  return { ...authorObj, bookObj };
+  const authorObject = await getSingleAuthor(firebaseKey);
+  const bookObject = await getBooks();
+  return { ...authorObject, bookObject };
 };
 
 export { getBookDetails, getAuthorDetails };
