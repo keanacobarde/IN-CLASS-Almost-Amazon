@@ -58,6 +58,18 @@ const formEvents = () => {
       });
     }
     // FIXME:ADD CLICK EVENT FOR EDITING AN AUTHOR
+    if (e.target.id.includes('update-author')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      console.warn(firebaseKey);
+      const payload = {
+        email: document.querySelector('#email').value,
+        first_name: document.querySelector('#first_name').value,
+        last_name: document.querySelector('#last_name').value,
+        firebaseKey,
+      };
+      console.warn(payload);
+      updateAuthor(payload).then(() => getAuthors().then(showAuthors));
+    }
   });
 };
 
