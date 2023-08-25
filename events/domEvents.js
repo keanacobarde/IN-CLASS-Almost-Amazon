@@ -6,6 +6,7 @@ import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorDa
 import { showAuthors } from '../pages/authors';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import { getBookDetails, getAuthorDetails } from '../api/mergedData';
+import viewAuthor from '../pages/viewAuthor';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -30,7 +31,6 @@ const domEvents = () => {
     }
 
     if (e.target.id.includes('view-book-btn')) {
-      console.warn('VIEW BOOK', e.target.id);
       const [, fbk] = e.target.id.split('--');
       getBookDetails(fbk).then(viewBook);
     }
@@ -53,9 +53,8 @@ const domEvents = () => {
     }
 
     if (e.target.id.includes('view-author-btn')) {
-      console.warn('VIEW AUTHOR', e.target.id.split('--'));
       const [, fbk] = e.target.id.split('--');
-      getAuthorDetails(fbk).then(console.warn);
+      getAuthorDetails(fbk).then(viewAuthor);
     }
   });
 };
