@@ -4,16 +4,34 @@ import renderToDOM from '../utils/renderToDom';
 const viewAuthor = (obj) => {
   clearDom();
 
-  const domString = `<div class="d-flex flex-column style="color:white;">
+  let domString = `<div class="d-flex flex-column style="color:white;">
 <h1>${obj.first_name} ${obj.last_name}</h1><p class="card-text bold">${obj.favorite ? '<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Favorite </span> ' : ''}</p><h4>Author Email: ${obj.email}</h4>
 <div>
 <i class="fas fa-edit btn btn-info" id="update-author--${obj.firebaseKey}"></i>
 <i class="btn btn-danger fas fa-trash-alt" id="delete-author-btn--${obj.firebaseKey}"></i>
 </div><hr>
-<h4>Books</h4>
-<div style="display:grid;">
 </div>
- </div>`;
+<h4>Books</h4>
+<div style="display:grid;">`;
+
+  for (let i = 0; i < obj.bookObject.length; i++) {
+    domString += `<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="..." class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  }
+
+  domString += '</div>';
 
   renderToDOM('#view', domString);
 };

@@ -82,6 +82,18 @@ const booksOnSale = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const booksbySingleAuth = (fbk) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books.json?orderBy="author_id"&equalTo="${fbk}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 // TODO: STRETCH...SEARCH BOOKS
 
 export {
@@ -90,5 +102,6 @@ export {
   booksOnSale,
   deleteBook,
   getSingleBook,
-  updateBook
+  updateBook,
+  booksbySingleAuth
 };
