@@ -51,6 +51,10 @@ const domEvents = () => {
       const [, fbk] = e.target.id.split('--');
       getSingleAuthor(fbk).then((authorObj) => addAuthorForm(authorObj));
     }
+
+    if (e.target.id.includes('view-author-btn')) {
+      console.warn('VIEW AUTHOR', e.target.id.split('--'));
+    }
   });
 };
 
