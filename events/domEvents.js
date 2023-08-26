@@ -14,7 +14,6 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, fbk] = e.target.id.split('--');
-        console.warn(fbk);
         deleteBook(fbk).then(() => {
           getBooks().then(showBooks);
         });
@@ -39,7 +38,7 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, fbk] = e.target.id.split('--');
-        deleteAuthorBookRelationship(fbk).then(console.warn);
+        deleteAuthorBookRelationship(fbk);
       }
     }
 
