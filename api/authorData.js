@@ -61,7 +61,6 @@ const getFavoriteAuthors = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// FIXME: DELETE AUTHOR
 const deleteSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors/${fireBaseKey}.json`, {
     method: 'DELETE',
@@ -74,7 +73,6 @@ const deleteSingleAuthor = (fireBaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// FIXME: UPDATE AUTHOR
 const updateAuthor = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors/${payload.firebaseKey}.json`, {
     method: 'PATCH',
@@ -88,7 +86,6 @@ const updateAuthor = (payload) => new Promise((resolve, reject) => {
     .then(reject);
 });
 
-// TODO: GET A SINGLE AUTHOR'S BOOKS
 const getAuthorBooks = () => {};
 
 export {
