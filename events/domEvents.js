@@ -2,10 +2,10 @@ import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
 import { showBooks } from '../pages/books';
 import addBookForm from '../components/forms/addBookForm';
 import viewBook from '../pages/viewBook';
-import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorData';
-import { showAuthors } from '../pages/authors';
+import { getSingleAuthor } from '../api/authorData';
+// import { showAuthors } from '../pages/authors';
 import addAuthorForm from '../components/forms/addAuthorForm';
-import { getBookDetails, getAuthorDetails } from '../api/mergedData';
+import { getBookDetails, getAuthorDetails, deleteAuthorBookRelationship } from '../api/mergedData';
 import viewAuthor from '../pages/viewAuthor';
 
 const domEvents = () => {
@@ -39,7 +39,7 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, fbk] = e.target.id.split('--');
-        deleteSingleAuthor(fbk).then(() => { getAuthors().then(showAuthors); });
+        deleteAuthorBookRelationship(fbk).then(console.warn);
       }
     }
 

@@ -14,6 +14,11 @@ const showAuthors = (array) => {
   renderToDOM('#add-button', btnString);
 
   let domString = '';
+
+  if (array <= 0) {
+    domString = '<h1> No Authors </h1>';
+  }
+
   array.forEach((item) => {
     domString += `
     <div class="card" style="width: 18rem;">
