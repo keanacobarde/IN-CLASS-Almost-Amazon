@@ -4,11 +4,11 @@ import renderToDOM from '../utils/renderToDom';
 const viewAuthor = (obj) => {
   clearDom();
 
-  let domString = `<div class="d-flex flex-column style="color:white;">
+  let domString = `<div class="d-flex flex-column">
 <h1>${obj.first_name} ${obj.last_name}</h1><p class="card-text bold">${obj.favorite ? '<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Favorite </span> ' : ''}</p><h4>Author Email: ${obj.email}</h4>
 <div>
-<i class="fas fa-edit btn btn-info" id="update-author--${obj.firebaseKey}"></i>
-<i class="btn btn-danger fas fa-trash-alt" id="delete-author-btn--${obj.firebaseKey}"></i>
+<i class="btn btn-info" id="update-author--${obj.firebaseKey}"> Edit Author </i>
+<i class="btn btn-danger" id="delete-author-btn--${obj.firebaseKey}"> Delete Author </i>
 </div><hr>
 </div>
 <h4>Books</h4>
