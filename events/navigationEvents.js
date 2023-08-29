@@ -25,7 +25,7 @@ const navigationEvents = (user) => {
   document.querySelector('#search').addEventListener('keyup', (e) => {
     const searchValue = document.querySelector('#search').value.toLowerCase();
     if (e.keyCode === 13) {
-      getBooks().then((response) => showBooks(response.filter((book) => book.title.toLowerCase().includes(searchValue) || book.description.toLowerCase().includes(searchValue))));
+      getBooks(user.uid).then((response) => showBooks(response.filter((book) => book.title.toLowerCase().includes(searchValue) || book.description.toLowerCase().includes(searchValue))));
       document.querySelector('#search').value = '';
     }
   });

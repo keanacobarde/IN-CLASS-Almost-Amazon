@@ -21,12 +21,12 @@ const domEvents = (user) => {
     }
 
     if (e.target.id.includes('add-book-btn')) {
-      addBookForm(user.uid);
+      addBookForm(user);
     }
 
     if (e.target.id.includes('edit-book-btn')) {
       const [, fbk] = e.target.id.split('--');
-      getSingleBook(fbk).then((bookObj) => addBookForm(bookObj));
+      getSingleBook(fbk).then((bookObj) => addBookForm(user, bookObj));
     }
 
     if (e.target.id.includes('view-book-btn')) {
@@ -43,7 +43,7 @@ const domEvents = (user) => {
     }
 
     if (e.target.id.includes('add-author-btn')) {
-      addAuthorForm(user.uid);
+      addAuthorForm();
     }
 
     if (e.target.id.includes('update-author')) {
