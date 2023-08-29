@@ -5,33 +5,33 @@ import { showBooks } from '../pages/books';
 import { showAuthors } from '../pages/authors';
 
 // navigation events
-const navigationEvents = () => {
+const navigationEvents = (user) => {
   // LOGOUT BUTTON
   document.querySelector('#logout-button')
     .addEventListener('click', signOut);
 
   document.querySelector('#sale-books').addEventListener('click', () => {
-    booksOnSale().then((response) => showBooks(response));
+    booksOnSale(user.uid).then((response) => showBooks(response));
   });
 
   document.querySelector('#all-books').addEventListener('click', () => {
-    getBooks().then((response) => showBooks(response));
+    getBooks(user.uid).then((response) => showBooks(response));
   });
 
   document.querySelector('#authors').addEventListener('click', () => {
-    getAuthors().then((response) => showAuthors(response));
+    getAuthors(user.uid).then((response) => showAuthors(response));
   });
 
   document.querySelector('#search').addEventListener('keyup', (e) => {
     const searchValue = document.querySelector('#search').value.toLowerCase();
     if (e.keyCode === 13) {
-      getBooks().then((response) => showBooks(response.filter((book) => book.title.toLowerCase().includes(searchValue) || book.description.toLowerCase().includes(searchValue))));
+      getBooks(user.uid).then((response) => showBooks(response.filter((book) => book.title.toLowerCase().includes(searchValue) || book.description.toLowerCase().includes(searchValue))));
       document.querySelector('#search').value = '';
     }
   });
 
   document.querySelector('#favorite_authors').addEventListener('click', () => {
-    getFavoriteAuthors().then(showAuthors);
+    getFavoriteAuthors(user.uid).then(showAuthors);
   });
 };
 

@@ -8,25 +8,25 @@ import addAuthorForm from '../components/forms/addAuthorForm';
 import { getBookDetails, getAuthorDetails, deleteAuthorBookRelationship } from '../api/mergedData';
 import viewAuthor from '../pages/viewAuthor';
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     if (e.target.id.includes('delete-book')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, fbk] = e.target.id.split('--');
         deleteBook(fbk).then(() => {
-          getBooks().then(showBooks);
+          getBooks(user.uid).then(showBooks);
         });
       }
     }
 
     if (e.target.id.includes('add-book-btn')) {
-      addBookForm();
+      addBookForm(user);
     }
 
     if (e.target.id.includes('edit-book-btn')) {
       const [, fbk] = e.target.id.split('--');
-      getSingleBook(fbk).then((bookObj) => addBookForm(bookObj));
+      getSingleBook(fbk).then((bookObj) => addBookForm(user, bookObj));
     }
 
     if (e.target.id.includes('view-book-btn')) {
