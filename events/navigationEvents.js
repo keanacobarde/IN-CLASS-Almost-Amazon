@@ -5,21 +5,21 @@ import { showBooks } from '../pages/books';
 import { showAuthors } from '../pages/authors';
 
 // navigation events
-const navigationEvents = () => {
+const navigationEvents = (user) => {
   // LOGOUT BUTTON
   document.querySelector('#logout-button')
     .addEventListener('click', signOut);
 
   document.querySelector('#sale-books').addEventListener('click', () => {
-    booksOnSale().then((response) => showBooks(response));
+    booksOnSale(user.uid).then((response) => showBooks(response));
   });
 
   document.querySelector('#all-books').addEventListener('click', () => {
-    getBooks().then((response) => showBooks(response));
+    getBooks(user.uid).then((response) => showBooks(response));
   });
 
   document.querySelector('#authors').addEventListener('click', () => {
-    getAuthors().then((response) => showAuthors(response));
+    getAuthors(user.uid).then((response) => showAuthors(response));
   });
 
   document.querySelector('#search').addEventListener('keyup', (e) => {
@@ -31,7 +31,7 @@ const navigationEvents = () => {
   });
 
   document.querySelector('#favorite_authors').addEventListener('click', () => {
-    getFavoriteAuthors().then(showAuthors);
+    getFavoriteAuthors(user.uid).then(showAuthors);
   });
 };
 

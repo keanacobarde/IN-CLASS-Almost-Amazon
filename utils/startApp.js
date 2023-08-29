@@ -7,14 +7,14 @@ import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
 import { showBooks } from '../pages/books';
 
-const startApp = () => {
+const startApp = (user) => {
   domBuilder(); // BUILD THE DOM
-  getBooks().then((response) => showBooks(response));
-  domEvents(); // ADD THE EVENT LISTENTERS TO THE DOM
-  formEvents(); // ADD FORM EVENT LISTENTERS TO THE DOM
+  getBooks(user.uid).then((response) => showBooks(response));
+  domEvents(user); // ADD THE EVENT LISTENTERS TO THE DOM
+  formEvents(user); // ADD FORM EVENT LISTENTERS TO THE DOM
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
-  navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
+  navigationEvents(user); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
 };
 
 export default startApp;
