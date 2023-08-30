@@ -3,6 +3,7 @@ import { getBooks, booksOnSale } from '../api/bookData';
 import { getAuthors, getFavoriteAuthors } from '../api/authorData';
 import { showBooks } from '../pages/books';
 import { showAuthors } from '../pages/authors';
+import createOrdersForm from '../components/forms/createOrdersForm';
 
 // navigation events
 const navigationEvents = (user) => {
@@ -22,16 +23,20 @@ const navigationEvents = (user) => {
     getAuthors(user.uid).then((response) => showAuthors(response));
   });
 
+  document.querySelector('#favorite_authors').addEventListener('click', () => {
+    getFavoriteAuthors(user.uid).then(showAuthors);
+  });
+
+  document.querySelector('#orders').addEventListener('click', () => {
+    createOrdersForm();
+  });
+
   document.querySelector('#search').addEventListener('keyup', (e) => {
     const searchValue = document.querySelector('#search').value.toLowerCase();
     if (e.keyCode === 13) {
       getBooks(user.uid).then((response) => showBooks(response.filter((book) => book.title.toLowerCase().includes(searchValue) || book.description.toLowerCase().includes(searchValue))));
       document.querySelector('#search').value = '';
     }
-  });
-
-  document.querySelector('#favorite_authors').addEventListener('click', () => {
-    getFavoriteAuthors(user.uid).then(showAuthors);
   });
 };
 
