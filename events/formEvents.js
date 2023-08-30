@@ -74,7 +74,12 @@ const formEvents = (user) => {
     }
 
     if (e.target.id.includes('createOrderForm')) {
-      console.warn('Order Submitted');
+      const payload = {
+        customer_name: document.querySelector('#customerName').value,
+        customer_email: document.querySelector('#customerEmail').value,
+        orderType: document.querySelector('#order-label').innerHTML,
+      };
+      console.warn(payload);
     }
   });
 };
