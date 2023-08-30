@@ -15,9 +15,12 @@ const allBooksUserCanOrder = (array) => {
           <h5 class="card-title">${item.title}</h5>
             <p class="card-text bold">${item.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${item.price}` : `$${item.price}`}</p>
             <hr>
-            <div style="display:flex;justify-content:center;">
+            <div style="display:grid;">
             <i class="btn btn-success" id="view-book-btn--${item.firebaseKey}"> View Book </i>
-            <i class="btn btn-info" id="order-book-btn--${item.firebaseKey}"> Order Book </i>
+            <div style="display:flex;margin-top:0.1rem;">
+            <input type="checkbox" class="form-check-input" id="orderBook" value="${item.firebaseKey}">
+            <label class="form-check-label" for="order">Order Book?</label>
+            </div>
             </div>
         </div>
       </div>`;
@@ -65,6 +68,10 @@ const createOrdersForm = (user) => {
 
     if (e.target.id === 'curbside-order') {
       document.querySelector('#order-label').innerHTML = 'Curbside';
+    }
+
+    if (e.target.id.includes('order-book')) {
+      document.querySelector('#order-btn').innerHTML = 'Ordered';
     }
   });
 };
