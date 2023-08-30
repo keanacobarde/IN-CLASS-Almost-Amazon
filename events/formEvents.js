@@ -72,6 +72,10 @@ const formEvents = (user) => {
       console.warn(payload);
       updateAuthor(payload).then(() => getAuthors(user.uid).then(showAuthors));
     }
+
+    if (e.target.id.includes('createOrderForm')) {
+      console.warn('Order Submitted');
+    }
   });
 };
 
