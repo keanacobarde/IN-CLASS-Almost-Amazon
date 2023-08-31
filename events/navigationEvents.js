@@ -28,7 +28,7 @@ const navigationEvents = (user) => {
   });
 
   document.querySelector('#orders').addEventListener('click', () => {
-    createOrdersForm();
+    createOrdersForm(user);
   });
 
   document.querySelector('#search').addEventListener('keyup', (e) => {
