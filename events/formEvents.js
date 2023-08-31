@@ -78,6 +78,7 @@ const formEvents = (user) => {
         customer_name: document.querySelector('#customerName').value,
         customer_email: document.querySelector('#customerEmail').value,
         orderType: document.querySelector('#order-label').innerHTML,
+        uid: user.uid,
       };
       console.warn(payload);
     }

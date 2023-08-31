@@ -1,6 +1,7 @@
 import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 import { getBooks } from '../../api/bookData';
+import { createOrder, updateOrder } from '../../api/orderData';
 
 const allBooksUserCanOrder = (array) => {
   let domString = '';
@@ -17,10 +18,7 @@ const allBooksUserCanOrder = (array) => {
             <hr>
             <div style="display:grid;">
             <i class="btn btn-success" id="view-book-btn--${item.firebaseKey}"> View Book </i>
-            <div style="display:flex;margin-top:0.1rem;">
-            <input type="checkbox" class="form-check-input" id="orderBook" value="${item.firebaseKey}">
-            <label class="form-check-label" for="order">Order Book?</label>
-            </div>
+            <i class="btn btn-info" id="order-book-btn--${item.firebaseKey}"> Add to Order </i>
             </div>
         </div>
       </div>`;
@@ -70,8 +68,16 @@ const createOrdersForm = (user) => {
       document.querySelector('#order-label').innerHTML = 'Curbside';
     }
 
-    if (e.target.id.includes('order-book')) {
-      document.querySelector('#order-btn').innerHTML = 'Ordered';
+    if (e.target.id.includes('order-book-btn')) {
+      console.warn(e.target.id);
+      const [, fbk] = e.target.id.split('--');
+      const payload = {
+        bookid: fbk,
+      };
+      createOrder(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateOrder(patchPayload);
+      });
     }
   });
 };
