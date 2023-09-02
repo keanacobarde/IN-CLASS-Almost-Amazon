@@ -2,6 +2,7 @@ import { createBook, updateBook, getBooks } from '../api/bookData';
 import { showBooks } from '../pages/books';
 import { createAuthor, getAuthors, updateAuthor } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
+import { createOrder, patchOrder } from '../api/orderData';
 
 const formEvents = (user) => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
@@ -80,7 +81,10 @@ const formEvents = (user) => {
         orderType: document.querySelector('#order-label').innerHTML,
         uid: user.uid,
       };
-      console.warn(payload);
+      createOrder(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        patchOrder(patchPayload);
+      });
     }
   });
 };

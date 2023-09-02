@@ -1,7 +1,7 @@
 import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 import { getBooks } from '../../api/bookData';
-import { createOrder, updateOrder } from '../../api/orderData';
+import { createOrder, updateOrderBooks } from '../../api/orderData';
 
 const allBooksUserCanOrder = (array) => {
   let domString = '';
@@ -74,14 +74,13 @@ const createOrdersForm = (user) => {
     }
 
     if (e.target.id.includes('order-book-btn')) {
-      console.warn(e.target.id);
       const [, fbk] = e.target.id.split('--');
       const payload = {
         bookid: fbk,
       };
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateOrder(patchPayload);
+        updateOrderBooks(patchPayload);
       });
     }
   });
