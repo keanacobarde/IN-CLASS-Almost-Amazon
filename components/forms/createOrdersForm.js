@@ -1,7 +1,7 @@
 import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 import { getBooks } from '../../api/bookData';
-import { createOrder, updateOrder } from '../../api/orderData';
+import { createOrder, updateOrderBooks } from '../../api/orderData';
 
 const allBooksUserCanOrder = (array) => {
   let domString = '';
@@ -29,7 +29,6 @@ const allBooksUserCanOrder = (array) => {
 
 const createOrdersForm = (user) => {
   clearDom();
-  const booksToShow = () => getBooks(user.uid).then(allBooksUserCanOrder);
   const domString = `<form id="createOrderForm">
 <div class="mb-3">
   <label for="customerName" class="form-label">Customer Name</label>
@@ -39,7 +38,6 @@ const createOrdersForm = (user) => {
   <label for="customerEmail" class="form-label">Email</label>
   <input type="email" class="form-control" id="customerEmail">
 </div>
-<div id="booksToOrder"></div>
 <div class="dropdown" style="margin:0.5rem 0;">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="order-label">
     Order Type
@@ -51,10 +49,12 @@ const createOrdersForm = (user) => {
   </ul>
 </div>
 <button type="submit" class="btn btn-primary" id="submitOrders">Order Now</button>
+<div id="booksToOrder"></div>
 </form>`;
 
   renderToDOM('#form-container', domString);
-  booksToShow();
+
+  // EVENT LISTENERS //
   document.querySelector('#form-container').addEventListener('click', (e) => {
     if (e.target.id === 'online-order') {
       document.querySelector('#order-label').innerHTML = 'Online';
@@ -68,15 +68,19 @@ const createOrdersForm = (user) => {
       document.querySelector('#order-label').innerHTML = 'Curbside';
     }
 
+    if (e.target.id === 'submitOrders') {
+      const booksToShow = () => getBooks(user.uid).then(allBooksUserCanOrder);
+      booksToShow();
+    }
+
     if (e.target.id.includes('order-book-btn')) {
-      console.warn(e.target.id);
       const [, fbk] = e.target.id.split('--');
       const payload = {
         bookid: fbk,
       };
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateOrder(patchPayload);
+        updateOrderBooks(patchPayload);
       });
     }
   });
